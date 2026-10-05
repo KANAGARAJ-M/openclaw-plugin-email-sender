@@ -140,7 +140,50 @@ Fetches and searches inbox messages via IMAP.
 Tests connectivity and authentication for configured SMTP/IMAP servers.
 
 ### 4. `render_email_template`
-Previews or renders Handlebars templates with data.
+Previews or renders Handlebars templates with dynamic data.
+
+### 5. `create_email_template`
+Dynamically registers or creates custom HTML email templates for reuse.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `templateName` | `string` | **Yes** | Identifier name for template (e.g. `"monthly_digest"`) |
+| `templateContent` | `string` | **Yes** | HTML template string with Handlebars placeholders |
+| `saveToDiskDir` | `string` | No | Optional folder path to save `.hbs` template file |
+
+---
+
+## 🎨 Prebuilt Business Email Templates
+
+The plugin comes with 5 built-in, mobile-friendly HTML templates:
+
+1. **`business`**: Professional corporate communications with CTA buttons and signature.
+2. **`quotation`**: Itemized pricing table, subtotal, tax/GST, grand total, payment terms, and accept CTA button.
+3. **`enquiry`**: Customer inquiry/support ticket response with reference numbers.
+4. **`general`**: Clean announcement or notification alert layout.
+5. **`welcome`**: Customer onboarding and login setup email.
+
+### Example: Using Prebuilt Templates in OpenClaw
+
+```json
+{
+  "tool": "send_email",
+  "args": {
+    "to": ["client@example.com"],
+    "subject": "Price Estimate #QT-2026-99",
+    "templateName": "quotation",
+    "templateData": {
+      "quoteNumber": "QT-2026-99",
+      "customerName": "Acme Corp",
+      "items": [
+        { "description": "OpenClaw Plugin Setup", "qty": 1, "unitPrice": 25000, "total": 25000 }
+      ],
+      "grandTotal": "25000",
+      "currencySymbol": "₹"
+    }
+  }
+}
+```
 
 ---
 
@@ -163,6 +206,16 @@ Build TypeScript code:
 ```bash
 npm run build
 ```
+
+## 🧠 OpenClaw Skills
+
+This package includes pre-configured **OpenClaw Agent Skills** in the [skills/](file:///d:/email-sender/skills) directory:
+
+1. **`SKILL.md`**: [skills/SKILL.md](file:///d:/email-sender/skills/SKILL.md) - Master skill definition for OpenClaw assistant.
+2. **`send-business-email`**: [skills/send-business-email.md](file:///d:/email-sender/skills/send-business-email.md) - Formal business updates and communications.
+3. **`send-price-quotation`**: [skills/send-price-quotation.md](file:///d:/email-sender/skills/send-price-quotation.md) - Generating itemized price estimates and invoices.
+4. **`process-inbox-enquiries`**: [skills/process-inbox-enquiries.md](file:///d:/email-sender/skills/process-inbox-enquiries.md) - Checking inbox queries and replying to customers.
+5. **`manage-email-templates`**: [skills/manage-email-templates.md](file:///d:/email-sender/skills/manage-email-templates.md) - Registering and previewing custom HTML templates.
 
 ---
 

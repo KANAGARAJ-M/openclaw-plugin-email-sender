@@ -9,6 +9,7 @@ import { sendEmailToolDefinition, createSendEmailToolHandler } from './tools/sen
 import { readEmailsToolDefinition, createReadEmailsToolHandler } from './tools/readEmails.tool';
 import { verifyConnectionToolDefinition, createVerifyConnectionToolHandler } from './tools/verifyConnection.tool';
 import { renderTemplateToolDefinition, createRenderTemplateToolHandler } from './tools/renderTemplate.tool';
+import { createTemplateToolDefinition, createCreateTemplateToolHandler } from './tools/createTemplate.tool';
 
 export interface OpenClawToolRegistration {
   definition: any;
@@ -96,6 +97,10 @@ export class OpenClawEmailSenderPlugin {
       {
         definition: renderTemplateToolDefinition,
         handler: createRenderTemplateToolHandler(this.templateService),
+      },
+      {
+        definition: createTemplateToolDefinition,
+        handler: createCreateTemplateToolHandler(this.templateService),
       },
     ];
   }
