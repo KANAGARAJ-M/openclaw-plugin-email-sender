@@ -61,7 +61,7 @@ IMAP_DEFAULT_MAILBOX=INBOX
 ALLOWED_DOMAINS=company.com,partner.org
 ```
 
-### OpenClaw Config File (`openclaw.config.json`)
+### OpenClaw Config File (`~/.openclaw/openclaw.json`)
 
 ```json
 {
